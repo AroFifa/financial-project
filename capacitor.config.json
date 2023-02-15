@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "financial_project",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}

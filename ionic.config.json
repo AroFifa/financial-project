@@ -1,0 +1,8 @@
+{
+  "name": "financial_project",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react",
+  "id": "a93c3871"
+}
