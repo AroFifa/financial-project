@@ -8,6 +8,8 @@ import {
   IonMenu,
   IonMenuToggle,
   IonNote,
+  IonSelect,
+  IonSelectOption,
 } from '@ionic/react';
 
 import { useLocation } from 'react-router-dom';
@@ -19,41 +21,42 @@ interface AppPage {
   iosIcon: string;
   mdIcon: string;
   title: string;
+  options?: string[];
 }
 
 const appPages: AppPage[] = [
   {
-    title: 'Inbox',
+    title: 'Dashboard',
     url: '/page/Inbox',
     iosIcon: mailOutline,
     mdIcon: mailSharp
   },
   {
-    title: 'Outbox',
+    title: 'Movement',
     url: '/page/Outbox',
     iosIcon: paperPlaneOutline,
     mdIcon: paperPlaneSharp
   },
   {
-    title: 'Favorites',
+    title: 'Transaction',
     url: '/page/Favorites',
     iosIcon: heartOutline,
     mdIcon: heartSharp
   },
   {
-    title: 'Archived',
+    title: 'Income',
     url: '/page/Archived',
     iosIcon: archiveOutline,
     mdIcon: archiveSharp
   },
   {
-    title: 'Trash',
+    title: 'Assessment',
     url: '/page/Trash',
     iosIcon: trashOutline,
     mdIcon: trashSharp
   },
   {
-    title: 'Spam',
+    title: 'Logout',
     url: '/page/Spam',
     iosIcon: warningOutline,
     mdIcon: warningSharp
@@ -69,21 +72,28 @@ const Menu: React.FC = () => {
     <IonMenu contentId="main" type="overlay">
       <IonContent>
         <IonList id="inbox-list">
-          <IonListHeader>Inbox</IonListHeader>
-          <IonNote>hi@ionicframework.com</IonNote>
+          <IonListHeader>Financial site</IonListHeader>
+          <IonNote>@Aro</IonNote>
           {appPages.map((appPage, index) => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
                 <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
-                  <IonIcon slot="start" ios={appPage.iosIcon} md={appPage.mdIcon} />
+                  <IonIcon slot="start"  ios={appPage.iosIcon} md={appPage.mdIcon} />
                   <IonLabel>{appPage.title}</IonLabel>
+                  {appPage.options && (
+                    <IonSelect slot="end" value="Option 1">
+                      {appPage.options?.map((option, index) => (
+                        <IonSelectOption key={index} value={option}>{option}</IonSelectOption>
+                      ))}
+                    </IonSelect>
+                  )}
                 </IonItem>
               </IonMenuToggle>
             );
           })}
         </IonList>
 
-        <IonList id="labels-list">
+        {/* <IonList id="labels-list">
           <IonListHeader>Labels</IonListHeader>
           {labels.map((label, index) => (
             <IonItem lines="none" key={index}>
@@ -91,7 +101,7 @@ const Menu: React.FC = () => {
               <IonLabel>{label}</IonLabel>
             </IonItem>
           ))}
-        </IonList>
+        </IonList> */}
       </IonContent>
     </IonMenu>
   );
