@@ -1,0 +1,18 @@
+ion-grid.table ion-col{
+    border: 1px;
+    border-style: groove;
+    padding: 20px;
+}
+
+
+ion-grid.table ion-row.header{
+    font-weight: bold;
+    text-transform: capitalize;
+    border: 3px;
+    border-style: groove;
+    background-color: rgb(246, 246, 246);
+}
+
+ion-grid.table ion-row:hover{
+    background-color: rgba(204, 204, 204, 0.2);
+}

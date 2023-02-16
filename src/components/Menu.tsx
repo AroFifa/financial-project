@@ -8,13 +8,15 @@ import {
   IonMenu,
   IonMenuToggle,
   IonNote,
+  IonPopover,
   IonSelect,
   IonSelectOption,
 } from '@ionic/react';
 
-import { useLocation } from 'react-router-dom';
-import { archiveOutline, archiveSharp, bookmarkOutline, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
+import { useHistory, useLocation } from 'react-router-dom';
+import { analyticsOutline, analyticsSharp, archiveOutline, archiveSharp, bookmarkOutline, chevronForwardCircle, chevronForwardCircleOutline, chevronForwardSharp, ellipsisVerticalOutline, heartOutline, heartSharp, logOut, logOutSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, pulseOutline, pulseSharp, speedometerOutline, speedometerSharp, swapHorizontalOutline, swapHorizontalSharp, trashOutline, trashSharp, trendingUpOutline, trendingUpSharp, warningOutline, warningSharp } from 'ionicons/icons';
 import './Menu.css';
+import { useState } from 'react';
 
 interface AppPage {
   url: string;
@@ -24,42 +26,38 @@ interface AppPage {
   options?: string[];
 }
 
+
 const appPages: AppPage[] = [
   {
     title: 'Dashboard',
     url: '/page/Inbox',
-    iosIcon: mailOutline,
-    mdIcon: mailSharp
+    iosIcon: speedometerOutline,
+    mdIcon: speedometerSharp
   },
   {
     title: 'Movement',
     url: '/page/Outbox',
-    iosIcon: paperPlaneOutline,
-    mdIcon: paperPlaneSharp
+    iosIcon: pulseOutline,
+    mdIcon: pulseSharp,
+    options: ["save","history"]
   },
   {
     title: 'Transaction',
     url: '/page/Favorites',
-    iosIcon: heartOutline,
-    mdIcon: heartSharp
+    iosIcon: swapHorizontalOutline,
+    mdIcon: swapHorizontalSharp
   },
   {
     title: 'Income',
     url: '/page/Archived',
-    iosIcon: archiveOutline,
-    mdIcon: archiveSharp
+    iosIcon: trendingUpOutline,
+    mdIcon: trendingUpSharp
   },
   {
     title: 'Assessment',
     url: '/page/Trash',
-    iosIcon: trashOutline,
-    mdIcon: trashSharp
-  },
-  {
-    title: 'Logout',
-    url: '/page/Spam',
-    iosIcon: warningOutline,
-    mdIcon: warningSharp
+    iosIcon: analyticsOutline,
+    mdIcon: analyticsSharp
   }
 ];
 
@@ -67,6 +65,62 @@ const labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
 const Menu: React.FC = () => {
   const location = useLocation();
+  const history = useHistory();
+
+
+  // const [popoverState, setShowPopover] = React.useState({
+  //   showPopover: false,
+  //   event: undefined,
+  // });
+
+
+  // const renderPopover = (options: string[]) => {
+  //   return (
+  //     <IonPopover
+  //       className="my-custom-class"
+  //       event={popoverState.event}
+  //       isOpen={popoverState.showPopover}
+  //       onDidDismiss={() =>
+  //         setShowPopover({ showPopover: false, event: undefined })
+  //       }
+  //     >
+  //       <IonList>
+  //         {options.map((option, index) => (
+  //           <React.Fragment key={index}>
+  //             {renderOption(option)}
+  //           </React.Fragment>
+  //         ))}
+  //       </IonList>
+  //     </IonPopover>
+  //   );
+  // };
+
+  // const renderOption = (option: string) => {
+  //   return (
+  //     <IonItem button routerLink={option}>
+  //       <IonLabel>{option}</IonLabel>
+  //     </IonItem>
+  //   );
+  // };
+
+  const [popoverState, setShowPopover] = useState({
+    showPopover: false,
+    event: undefined
+  });
+
+  const openPopover = (event: any) => {
+    setShowPopover({
+      showPopover: true,
+      event
+    });
+  };
+
+  const closePopover = () => {
+    setShowPopover({
+      showPopover: false,
+      event: undefined
+    });
+  };
 
   return (
     <IonMenu contentId="main" type="overlay">
@@ -80,28 +134,52 @@ const Menu: React.FC = () => {
                 <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
                   <IonIcon slot="start"  ios={appPage.iosIcon} md={appPage.mdIcon} />
                   <IonLabel>{appPage.title}</IonLabel>
-                  {appPage.options && (
-                    <IonSelect slot="end" value="Option 1">
-                      {appPage.options?.map((option, index) => (
-                        <IonSelectOption key={index} value={option}>{option}</IonSelectOption>
-                      ))}
-                    </IonSelect>
-                  )}
+                 
+
+
+
+                    {appPage.options && (
+                        <div className="dropdown-container" slot="end">
+                          <button className="dropdown-button" onClick={(event) => openPopover(event)}>
+                            <IonIcon slot="start" icon={chevronForwardSharp} />
+                          </button>
+                          <IonPopover
+                            isOpen={popoverState.showPopover}
+                            event={popoverState.event}
+                            onDidDismiss={() => closePopover()}
+                          >
+                            <IonList>
+                              {appPage.options?.map((option, index) => (
+                                // <IonItem key={index} button onClick={() => {
+                                //   history.push(`${appPage.url}/${option}`);
+                                //   closePopover();
+                                // }}>
+
+                                <IonItem key={index} className={location.pathname === `${appPage.url}/${option}` ? 'selected' : ''} routerLink={`${appPage.url}/${option}`} routerDirection="none" lines="none" detail={false} onClick={()=>closePopover()}>
+                                  {option}
+                                </IonItem>
+                              ))}
+                            </IonList>
+                          </IonPopover>
+                        </div>
+                      )}
+
+
+
+
                 </IonItem>
               </IonMenuToggle>
             );
           })}
         </IonList>
 
-        {/* <IonList id="labels-list">
-          <IonListHeader>Labels</IonListHeader>
-          {labels.map((label, index) => (
-            <IonItem lines="none" key={index}>
-              <IonIcon slot="start" icon={bookmarkOutline} />
-              <IonLabel>{label}</IonLabel>
-            </IonItem>
-          ))}
-        </IonList> */}
+        <IonList id="inbox-list">
+          <IonListHeader></IonListHeader>
+                <IonItem routerLink='/logout' routerDirection="none" lines="none" detail={false}>
+                  <IonIcon slot="start"  ios={logOut} md={logOutSharp} />
+                  <IonLabel>Logout</IonLabel>
+                </IonItem>
+        </IonList>
       </IonContent>
     </IonMenu>
   );
