@@ -2,17 +2,10 @@ import { IonCol, IonGrid, IonRow } from '@ionic/react';
 import './CardContainer.css';
 import FicheContainer from '../fiche/FicheContainer';
 import { additional_col, header } from '../../obj/comp_class';
-
-interface ContainerProps {
-  header: header[];
-  data: object[];
-  obj?: object;
-  additional_column?: additional_col[];
-  size?: string;
-}
+import { CardContainerProps } from '../../obj/comp_type';
 
 
-const CardContainer: React.FC<ContainerProps> = (props) => {
+const CardContainer: React.FC<CardContainerProps> = (props) => {
   var header:any=props.header;
 
   return (

@@ -3,6 +3,7 @@ import './FormContainer.css';
 import FormGroup from './FormGroup';
 
 interface ContainerProps {
+    style?:object;
     method?:string;
     fields?:any[];
     info: object; 
@@ -16,7 +17,7 @@ const FormContainer: React.FC<ContainerProps> = (props) => {
     var info:any=props.info;
 
   return (
-    <IonCard>
+    <IonCard style={props.style}>
       <IonCardHeader>
         <IonCardTitle>{info.title}</IonCardTitle>
         <IonCardSubtitle>{info.subtitle}</IonCardSubtitle>

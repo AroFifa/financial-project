@@ -1,5 +1,5 @@
 import { IonCol, IonRouterLink, IonRow } from '@ionic/react';
-import { getValue } from '../../obj/comp_fun';
+import { getValue } from '../../obj/comp_func';
 import './TableRow.css';
 
 interface ContainerProps {

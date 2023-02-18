@@ -14,163 +14,142 @@ import {
 } from '@ionic/react';
 
 import { useHistory, useLocation } from 'react-router-dom';
-import { analyticsOutline, analyticsSharp, archiveOutline, archiveSharp, bookmarkOutline, chevronForwardCircle, chevronForwardCircleOutline, chevronForwardSharp, ellipsisVerticalOutline, heartOutline, heartSharp, logOut, logOutSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, pulseOutline, pulseSharp, speedometerOutline, speedometerSharp, swapHorizontalOutline, swapHorizontalSharp, trashOutline, trashSharp, trendingUpOutline, trendingUpSharp, warningOutline, warningSharp } from 'ionicons/icons';
+import { analyticsOutline, analyticsSharp, archiveOutline, archiveSharp, bookmarkOutline, caretDown, caretForward, chevronForwardCircle, chevronForwardCircleOutline, chevronForwardSharp, ellipsisVerticalOutline, heartOutline, heartSharp, help, informationCircleOutline, logOut, logOutSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, pulseOutline, pulseSharp, saveOutline, saveSharp, speedometerOutline, speedometerSharp, swapHorizontalOutline, swapHorizontalSharp, trashOutline, trashSharp, trendingUpOutline, trendingUpSharp, warningOutline, warningSharp } from 'ionicons/icons';
 import './Menu.css';
 import { useState } from 'react';
-
-interface AppPage {
-  url: string;
-  iosIcon: string;
-  mdIcon: string;
-  title: string;
-  options?: string[];
-}
-
+import { AppPage } from '../obj/comp_type';
+import SubMenu from './menu/SubMenu';
 
 const appPages: AppPage[] = [
   {
     title: 'Dashboard',
-    url: '/page/Inbox',
+    url: '/page/Dashboard',
     iosIcon: speedometerOutline,
     mdIcon: speedometerSharp
   },
   {
     title: 'Movement',
-    url: '/page/Outbox',
+    url: '/page/Movement',
     iosIcon: pulseOutline,
     mdIcon: pulseSharp,
-    options: ["save","history"]
+    submenu: [
+      {
+        url: "/page/save_expense",
+        iosIcon: saveOutline,
+        mdIcon: saveSharp,
+        title: "Save"
+      },      {
+        url: "/page/history_expense",
+        iosIcon: archiveOutline,
+        mdIcon: archiveSharp,
+        title: "History"
+      }
+    ]
   },
   {
     title: 'Transaction',
-    url: '/page/Favorites',
+    url: '/page/Transaction',
     iosIcon: swapHorizontalOutline,
-    mdIcon: swapHorizontalSharp
+    mdIcon: swapHorizontalSharp,
+    submenu: [
+      {
+        url: "/page/RefundLoan",
+        iosIcon: saveOutline,
+        mdIcon: saveSharp,
+        title: "Refund and Loan"
+      },      {
+        url: "/page/Reports",
+        iosIcon: archiveOutline,
+        mdIcon: archiveSharp,
+        title: "Reports"
+      }
+    ]
   },
   {
     title: 'Income',
-    url: '/page/Archived',
+    url: '/page/Income',
     iosIcon: trendingUpOutline,
-    mdIcon: trendingUpSharp
+    mdIcon: trendingUpSharp,
+    submenu: [
+      {
+        url: "/page/save_income",
+        iosIcon: saveOutline,
+        mdIcon: saveSharp,
+        title: "Save"
+      },      {
+        url: "/page/history_income",
+        iosIcon: archiveOutline,
+        mdIcon: archiveSharp,
+        title: "History"
+      }
+    ]
   },
   {
     title: 'Assessment',
-    url: '/page/Trash',
+    url: '/page/Assessment',
     iosIcon: analyticsOutline,
-    mdIcon: analyticsSharp
+    mdIcon: analyticsSharp,
+    submenu: [
+      {
+        url: "/page/Category",
+        iosIcon: saveOutline,
+        mdIcon: saveSharp,
+        title: "Category"
+      }, 
+      {
+        url: "/page/Article",
+        iosIcon: archiveOutline,
+        mdIcon: archiveSharp,
+        title: "Article"
+      },
+      {
+        url: "/page/TierceAccount",
+        iosIcon: archiveOutline,
+        mdIcon: archiveSharp,
+        title: "Tierce Account"
+      },
+      {
+        url: "/page/Provider",
+        iosIcon: archiveOutline,
+        mdIcon: archiveSharp,
+        title: "Provider"
+      }
+    ]
   }
 ];
 
-const labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
 const Menu: React.FC = () => {
   const location = useLocation();
-  const history = useHistory();
-
-
-  // const [popoverState, setShowPopover] = React.useState({
-  //   showPopover: false,
-  //   event: undefined,
-  // });
-
-
-  // const renderPopover = (options: string[]) => {
-  //   return (
-  //     <IonPopover
-  //       className="my-custom-class"
-  //       event={popoverState.event}
-  //       isOpen={popoverState.showPopover}
-  //       onDidDismiss={() =>
-  //         setShowPopover({ showPopover: false, event: undefined })
-  //       }
-  //     >
-  //       <IonList>
-  //         {options.map((option, index) => (
-  //           <React.Fragment key={index}>
-  //             {renderOption(option)}
-  //           </React.Fragment>
-  //         ))}
-  //       </IonList>
-  //     </IonPopover>
-  //   );
-  // };
-
-  // const renderOption = (option: string) => {
-  //   return (
-  //     <IonItem button routerLink={option}>
-  //       <IonLabel>{option}</IonLabel>
-  //     </IonItem>
-  //   );
-  // };
-
-  const [popoverState, setShowPopover] = useState({
-    showPopover: false,
-    event: undefined
-  });
-
-  const openPopover = (event: any) => {
-    setShowPopover({
-      showPopover: true,
-      event
-    });
-  };
-
-  const closePopover = () => {
-    setShowPopover({
-      showPopover: false,
-      event: undefined
-    });
-  };
-
   return (
     <IonMenu contentId="main" type="overlay">
       <IonContent>
         <IonList id="inbox-list">
           <IonListHeader>Financial site</IonListHeader>
           <IonNote>@Aro</IonNote>
+              <IonMenuToggle autoHide={false}>
           {appPages.map((appPage, index) => {
+            if(appPage.submenu){
+              return (
+
+                <SubMenu key={index} url={appPage.url} iosIcon={appPage.iosIcon} mdIcon={appPage.mdIcon} title={appPage.title} submenu={appPage.submenu} />
+              );
+            }else{
             return (
-              <IonMenuToggle key={index} autoHide={false}>
-                <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
+                <IonItem key={index} className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
                   <IonIcon slot="start"  ios={appPage.iosIcon} md={appPage.mdIcon} />
                   <IonLabel>{appPage.title}</IonLabel>
                  
 
 
 
-                    {appPage.options && (
-                        <div className="dropdown-container" slot="end">
-                          <button className="dropdown-button" onClick={(event) => openPopover(event)}>
-                            <IonIcon slot="start" icon={chevronForwardSharp} />
-                          </button>
-                          <IonPopover
-                            isOpen={popoverState.showPopover}
-                            event={popoverState.event}
-                            onDidDismiss={() => closePopover()}
-                          >
-                            <IonList>
-                              {appPage.options?.map((option, index) => (
-                                // <IonItem key={index} button onClick={() => {
-                                //   history.push(`${appPage.url}/${option}`);
-                                //   closePopover();
-                                // }}>
-
-                                <IonItem key={index} className={location.pathname === `${appPage.url}/${option}` ? 'selected' : ''} routerLink={`${appPage.url}/${option}`} routerDirection="none" lines="none" detail={false} onClick={()=>closePopover()}>
-                                  {option}
-                                </IonItem>
-                              ))}
-                            </IonList>
-                          </IonPopover>
-                        </div>
-                      )}
-
-
-
-
                 </IonItem>
-              </IonMenuToggle>
             );
+            }
           })}
+
+
+              </IonMenuToggle>
         </IonList>
 
         <IonList id="inbox-list">

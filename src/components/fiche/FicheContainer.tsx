@@ -1,20 +1,11 @@
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonItem, IonLabel, IonList, IonRouterLink } from '@ionic/react';
 import { additional_col } from '../../obj/comp_class';
-import { getValue } from '../../obj/comp_fun';
+import { getValue } from '../../obj/comp_func';
 import './FicheContainer.css';
-interface ContainerProps {
-    object?: object;
-    toshow?:any[];
-    info?:object;
-    img?:String;
-    additional_column?: additional_col[];
+import { FicheContainerProps } from '../../obj/comp_type';
 
 
-}
-
-
-
-const FicheContainer: React.FC<ContainerProps> = (props) => {
+const FicheContainer: React.FC<FicheContainerProps> = (props) => {
     var info:any=props.info;
     var object:any=props.object;
 
