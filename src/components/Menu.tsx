@@ -88,33 +88,7 @@ const appPages: AppPage[] = [
     title: 'Assessment',
     url: '/page/Assessment',
     iosIcon: analyticsOutline,
-    mdIcon: analyticsSharp,
-    submenu: [
-      {
-        url: "/page/Category",
-        iosIcon: saveOutline,
-        mdIcon: saveSharp,
-        title: "Category"
-      }, 
-      {
-        url: "/page/Article",
-        iosIcon: archiveOutline,
-        mdIcon: archiveSharp,
-        title: "Article"
-      },
-      {
-        url: "/page/TierceAccount",
-        iosIcon: archiveOutline,
-        mdIcon: archiveSharp,
-        title: "Tierce Account"
-      },
-      {
-        url: "/page/Provider",
-        iosIcon: archiveOutline,
-        mdIcon: archiveSharp,
-        title: "Provider"
-      }
-    ]
+    mdIcon: analyticsSharp
   }
 ];
 
@@ -136,7 +110,7 @@ const Menu: React.FC = () => {
               );
             }else{
             return (
-                <IonItem key={index} className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
+                <IonItem style={{marginBottom: "20px"}} key={index} className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
                   <IonIcon slot="start"  ios={appPage.iosIcon} md={appPage.mdIcon} />
                   <IonLabel>{appPage.title}</IonLabel>
                  
