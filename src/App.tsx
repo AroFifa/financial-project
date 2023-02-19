@@ -25,6 +25,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import Signin from './pages/login/signin';
 import SideMenu from './components/menu/SideMenu';
+import SaveExepenses from './pages/expenses/SaveExpenses';
 
 setupIonicReact();
 
@@ -37,6 +38,10 @@ const App: React.FC = () => {
           <IonRouterOutlet id="main">
             <Route path="/page/:name" exact={true}>
               <Page />
+            </Route>
+
+            <Route path="/save_expenses" exact={true}>
+              <SaveExepenses />
             </Route>
           </IonRouterOutlet>
         </IonSplitPane>

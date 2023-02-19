@@ -28,8 +28,8 @@ const FormGroup: React.FC<ContainerProps> = (props) => {
               
                 return (
                     <IonItem key={index} fill="solid">
-                    <IonLabel position="floating">{element.label}</IonLabel>
-                    <IonInput required={required} min={element.min} max={element.max} value={element.defaultValue} type={element.type} ref={element.ref}  name={element.name} placeholder={element.placeholder}></IonInput>
+                      <IonLabel position="floating">{element.label}</IonLabel>
+                      <IonInput required={required} min={element.min} max={element.max} value={element.defaultValue} type={element.type} ref={element.ref}  name={element.name} placeholder={element.placeholder}></IonInput>
                     </IonItem>
                 );
             }else{

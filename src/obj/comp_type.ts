@@ -26,3 +26,9 @@ export interface CardContainerProps {
     additional_column?: additional_col[];
     size?: string;
   }
+
+
+  export interface selectData {
+    label: string;
+    value: string;
+  }

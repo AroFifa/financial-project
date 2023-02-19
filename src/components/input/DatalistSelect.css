@@ -1,0 +1,66 @@
+/* .datalist-select {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .datalist-select input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .datalist-select input:focus {
+    outline: none;
+    border-color: #4c8dff;
+  }
+  
+  .datalist-select datalist {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    background-color: #fff;
+  }
+  
+  .datalist-select option {
+    display: block;
+    padding: 10px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .datalist-select input::-webkit-calendar-picker-indicator {
+    display: none;
+  }
+   */
+   .custom-select {
+    height: 44px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    border: 0px solid #ced4da;
+    border-radius: 4px;
+    padding: 0.375rem 0.75rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  .custom-select:focus {
+    border-color: #86B2C1;
+    box-shadow: 0 0 0 0.2rem rgba(86, 182, 218, 0.25);
+    outline: none;
+  }
+  
+  .custom-select::placeholder {
+    color: #A3A3A3;
+  }
+  

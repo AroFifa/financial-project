@@ -14,7 +14,7 @@ import {
 } from '@ionic/react';
 
 import { useHistory, useLocation } from 'react-router-dom';
-import { analyticsOutline, analyticsSharp, archiveOutline, archiveSharp, bookmarkOutline, caretDown, caretForward, chevronForwardCircle, chevronForwardCircleOutline, chevronForwardSharp, ellipsisVerticalOutline, heartOutline, heartSharp, help, informationCircleOutline, logOut, logOutSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, pulseOutline, pulseSharp, saveOutline, saveSharp, speedometerOutline, speedometerSharp, swapHorizontalOutline, swapHorizontalSharp, trashOutline, trashSharp, trendingUpOutline, trendingUpSharp, warningOutline, warningSharp } from 'ionicons/icons';
+import { analyticsOutline, analyticsSharp, archiveOutline, archiveSharp, bookmarkOutline, bookmarkSharp, caretDown, caretForward, chevronForwardCircle, chevronForwardCircleOutline, chevronForwardSharp, documentTextOutline, documentTextSharp, ellipsisVerticalOutline, heartOutline, heartSharp, help, informationCircleOutline, logOut, logOutSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, pulseOutline, pulseSharp, receiptOutline, receiptSharp, returnDownBackOutline, returnDownBackSharp, saveOutline, saveSharp, speedometerOutline, speedometerSharp, swapHorizontalOutline, swapHorizontalSharp, timeOutline, timeSharp, trashOutline, trashSharp, trendingUpOutline, trendingUpSharp, warningOutline, warningSharp } from 'ionicons/icons';
 import './Menu.css';
 import { useState } from 'react';
 import { AppPage } from '../obj/comp_type';
@@ -28,20 +28,20 @@ const appPages: AppPage[] = [
     mdIcon: speedometerSharp
   },
   {
-    title: 'Movement',
-    url: '/page/Movement',
-    iosIcon: pulseOutline,
-    mdIcon: pulseSharp,
+    title: 'Expenses',
+    url: '/page/expenses',
+    iosIcon: receiptOutline,
+    mdIcon: receiptSharp,
     submenu: [
       {
-        url: "/page/save_expense",
-        iosIcon: saveOutline,
-        mdIcon: saveSharp,
+        url: "/save_expenses",
+        iosIcon: bookmarkOutline,
+        mdIcon: bookmarkSharp,
         title: "Save"
       },      {
         url: "/page/history_expense",
-        iosIcon: archiveOutline,
-        mdIcon: archiveSharp,
+        iosIcon: timeOutline,
+        mdIcon: timeSharp,
         title: "History"
       }
     ]
@@ -54,13 +54,13 @@ const appPages: AppPage[] = [
     submenu: [
       {
         url: "/page/RefundLoan",
-        iosIcon: saveOutline,
-        mdIcon: saveSharp,
+        iosIcon: returnDownBackOutline,
+        mdIcon: returnDownBackSharp,
         title: "Refund and Loan"
       },      {
         url: "/page/Reports",
-        iosIcon: archiveOutline,
-        mdIcon: archiveSharp,
+        iosIcon: documentTextOutline,
+        mdIcon: documentTextSharp,
         title: "Reports"
       }
     ]
@@ -73,13 +73,13 @@ const appPages: AppPage[] = [
     submenu: [
       {
         url: "/page/save_income",
-        iosIcon: saveOutline,
-        mdIcon: saveSharp,
+        iosIcon: bookmarkOutline,
+        mdIcon: bookmarkSharp,
         title: "Save"
       },      {
         url: "/page/history_income",
-        iosIcon: archiveOutline,
-        mdIcon: archiveSharp,
+        iosIcon: timeOutline,
+        mdIcon: timeSharp,
         title: "History"
       }
     ]
